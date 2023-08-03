@@ -1,0 +1,25 @@
+
+API_URL = 'https://web-api.tp.entsoe.eu/api'
+
+# Get your own token here:
+# https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html#_authentication_and_authorisation
+token = 'REDACTED'
+
+# Area code from here:
+# https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html#_areas
+market = '10YNL----------L'
+
+# API is in UTC, we want to display local time
+import zoneinfo
+TZ = zoneinfo.ZoneInfo("Europe/Amsterdam")
+
+
+# VAT rate to apply on top of market price
+vat_rate = 1.21
+
+# Electricity tax source:
+# https://www.belastingdienst.nl/wps/wcm/connect/bldcontentnl/belastingdienst/zakelijk/overige_belastingen/belastingen_op_milieugrondslag/tarieven_milieubelastingen/tabellen_tarieven_milieubelastingen
+tax_per_kwh = 0.12599 * vat_rate
+
+# Handling fee of Zonneplan, inclusive VAT
+handling_per_kwh = 0.02
