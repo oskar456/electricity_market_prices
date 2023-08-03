@@ -19,15 +19,16 @@ Usage
 
 ```
 $ ./market_prices.py --help
-usage: market_prices.py [-h] [-s START] [-e END]
+usage: market_prices.py [-h] [-s YYYYMMDD] [-e YYYYMMDD]
 
 Download and present hourly market prices as well as end user energy prices
 
 options:
   -h, --help            show this help message and exit
-  -s START, --start START
+  -s YYYYMMDD, --start YYYYMMDD
                         start date
-  -e END, --end END     end date
+  -e YYYYMMDD, --end YYYYMMDD
+                        end date
 
 $ ./market_prices.py --start 20230702 --end 20230703
 
@@ -58,4 +59,4 @@ Hour    €/MWh  ct/kWh
 21-22   85.58    27.6
 22-23   94.90    28.7
 23-24   86.08    27.7
-
+```

@@ -74,8 +74,8 @@ def print_prices(data):
 
 def datetime_parser(s):
     """
-    Parse a string containging YYYYMMDD into a proper datetime object
-    of local midnight of that day in UTC timezone.
+    Parse a string containging YYYYMMDD into a proper timezone-aware
+    datetime object of local midnight of that day
     """
     d = datetime.date.fromisoformat(s)
     return datetime.datetime(d.year, d.month, d.day, tzinfo=TZ)
@@ -87,9 +87,9 @@ def parse_options():
                         "as well as end user energy prices"
     )
     parser.add_argument("-s", "--start", help="start date",
-                        type=datetime_parser)
+                        metavar="YYYYMMDD", type=datetime_parser)
     parser.add_argument("-e", "--end", help="end date",
-                        type=datetime_parser)
+                        metavar="YYYYMMDD", type=datetime_parser)
     return parser.parse_args()
 
 
