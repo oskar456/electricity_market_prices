@@ -65,11 +65,11 @@ def print_prices(data):
             olddate = dt.date()
             print()
             print(f"{dt.year:04}-{dt.month:02}-{dt.day:02}")
-            print("Hour    €/MWh  ct/kWh")
-            print(21*"=")
+            print("Hour    €/MWh   ct/kWh")
+            print("======================")
         endprice = get_end_price(price)
         print(f"{dt.hour:02}-{dt.hour + 1:02} {price:>7.2f}   "
-              f"{100*endprice:>5.1f}")
+              f"{100*endprice:>6.2f}")
 
 
 def datetime_parser(s):
