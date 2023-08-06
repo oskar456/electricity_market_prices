@@ -8,7 +8,7 @@ import argparse
 
 from market_prices_config import *
 
-def download_xml(startdate=None, enddate=None):
+def download_xml(startdate=None, enddate=None, market=market):
     """
     Download XML Market data from the ENTSOE transparency plaform.
     """
