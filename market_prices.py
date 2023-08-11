@@ -90,12 +90,14 @@ def parse_options():
                         metavar="YYYYMMDD", type=datetime_parser)
     parser.add_argument("-e", "--end", help="end date",
                         metavar="YYYYMMDD", type=datetime_parser)
+    parser.add_argument("--market", help="market id",
+                        default=market)
     return parser.parse_args()
 
 
 def main():
     args = parse_options()
-    doc = download_xml(args.start, args.end)
+    doc = download_xml(args.start, args.end, args.market)
     data = parse_xml_doc(doc)
     print_prices(data)
 
