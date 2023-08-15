@@ -5,7 +5,6 @@ import urllib.request
 import urllib.parse
 import xml.etree.ElementTree
 import argparse
-import re
 
 from market_prices_config import *
 
@@ -37,6 +36,17 @@ def download_xml(startdate=None, enddate=None, market=market):
     return doc
 
 
+def parse_iso_timedelta(timedelta):
+    """
+    Simplified parser of ISO 8601 interval string.
+    Return a timedelta instance.
+    Only minutes difference is supported.
+    """
+    assert timedelta[:2] == "PT", f"String {timedelta} does not start with PT"
+    assert timedelta[-1] == "M", f"String {timedelta} does not end with M"
+    return datetime.timedelta(minutes=int(timedelta[2:-1]))
+
+
 def parse_xml_doc(doc):
     """
     Parse ElementTree document with hourly prices.
@@ -45,10 +55,7 @@ def parse_xml_doc(doc):
     for per in doc.findall('.//{*}Period'):
         start = per.find("{*}timeInterval/{*}start").text
         resolution = per.find("{*}resolution").text
-        delta = datetime.timedelta(minutes=int(
-                    re.match(r'PT([0-9]+)M', resolution).group(1)
-                    )
-                )
+        delta = parse_iso_timedelta(resolution)
         d = datetime.datetime.fromisoformat(start)
         for pos, val in per.findall("{*}Point"):
             pos = int(pos.text)
