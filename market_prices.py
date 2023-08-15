@@ -5,6 +5,7 @@ import urllib.request
 import urllib.parse
 import xml.etree.ElementTree
 import argparse
+import re
 
 from market_prices_config import *
 
@@ -43,12 +44,16 @@ def parse_xml_doc(doc):
     """
     for per in doc.findall('.//{*}Period'):
         start = per.find("{*}timeInterval/{*}start").text
+        resolution = per.find("{*}resolution").text
+        delta = datetime.timedelta(minutes=int(
+                    re.match(r'PT([0-9]+)M', resolution).group(1)
+                    )
+                )
         d = datetime.datetime.fromisoformat(start)
         for pos, val in per.findall("{*}Point"):
             pos = int(pos.text)
             val = float(val.text)
-            delta = datetime.timedelta(hours=pos-1)
-            yield (d+delta, val)
+            yield (d+(pos-1)*delta, val)
 
 
 def get_end_price(marketprice):
