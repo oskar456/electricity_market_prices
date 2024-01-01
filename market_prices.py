@@ -96,13 +96,13 @@ def datetime_parser(s):
 def parse_options():
     parser = argparse.ArgumentParser(
             description="Download and present hourly market prices "
-                        "as well as end user energy prices"
+                        "as well as end user energy prices."
     )
     parser.add_argument("-s", "--start", help="start date",
                         metavar="YYYYMMDD", type=datetime_parser)
     parser.add_argument("-e", "--end", help="end date",
                         metavar="YYYYMMDD", type=datetime_parser)
-    parser.add_argument("--market", help="market id",
+    parser.add_argument("--market", help="market id (default: %(default)s)",
                         default=market)
     return parser.parse_args()
 
