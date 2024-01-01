@@ -19,7 +19,7 @@ vat_rate = 1.21
 
 # Electricity tax source:
 # https://www.belastingdienst.nl/wps/wcm/connect/bldcontentnl/belastingdienst/zakelijk/overige_belastingen/belastingen_op_milieugrondslag/tarieven_milieubelastingen/tabellen_tarieven_milieubelastingen
-tax_per_kwh = 0.12599 * vat_rate
+tax_per_kwh = 0.1088 * vat_rate
 
 # Handling fee of Zonneplan, inclusive VAT
 handling_per_kwh = 0.02
