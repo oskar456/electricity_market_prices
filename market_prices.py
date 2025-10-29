@@ -80,7 +80,7 @@ def print_prices(data):
             print("Hour    €/MWh   ct/kWh")
             print("======================")
         endprice = get_end_price(price)
-        print(f"{dt.hour:02}-{dt.hour + 1:02} {price:>7.2f}   "
+        print(f"{dt.hour:02}:{dt.minute:02} {price:>7.2f}   "
               f"{100*endprice:>6.2f}")
 
 
